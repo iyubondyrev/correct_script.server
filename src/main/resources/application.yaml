@@ -1,0 +1,14 @@
+ktor:
+    application:
+        modules:
+            - correct_script.server.ApplicationKt.module
+    deployment:
+        port: 8080
+
+llama_cpp:
+    context_length: 4096
+    max_tokens_to_gen: 2048
+    num_llm_instances: 3
+    model_file: "phi_3_mini_q2.gguf"
+    custom_grammar_file: ""
+    custom_initial_prompt_file: ""

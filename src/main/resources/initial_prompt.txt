@@ -1,0 +1,7 @@
+<|system|> You are a helpful AI assistant. You will be correcting python scripts. I will give you a python script and an error in json format {"script": , "error":} you must send the fixed script back. You need only to produce the fixed version in json format {"fixedScript": }, nothing more, be very short, very important: only fixed script, no additional comments from you!<|end|>
+<|user|> {"script": "a = [1, 2\na[0]\n", "error": "File \"/home/ubuntu/JB_kotlin_cli_tool/lol.py\", line 1\n    a = [1, 2\n        ^\nSyntaxError: '[' was never closed\n"} <|end|>
+ <|assistant|> {"fixedScript": "a = [1, 2]\na[0]\n"} <|end|>
+<|user|> {"script": "a = [1. 2, 3]\na[2]\n", "error": "File \"/home/ubuntu/JB_kotlin_cli_tool/lol.py\", line 1\n    a = [1. 2, 3]\n         ^^^^\nSyntaxError: invalid syntax. Perhaps you forgot a comma?\n"} <|end|>
+ <|assistant|> {"fixedScript": "a = [1., 2, 3]\na[2]\n"} <|end|>
+<|user|> {"script": "for i range(5):\n    print(i)\n", "error": "File \"/home/ubuntu/JB_kotlin_cli_tool/lol.py\", line 1\n    for i range(5):\n          ^^^^^\nSyntaxError: invalid syntax\n"} <|end|>
+ <|assistant|> {"fixedScript": "for i in range(5):\n    print(i)\n"} <|end|>
