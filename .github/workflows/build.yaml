@@ -45,6 +45,7 @@ jobs:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./correct_script.server/src/main/resources/application.yaml
           asset_name: config.yaml
+          asset_content_type: application/x-yaml
 
 
       - name: Upload initial prompt example to Release
@@ -55,3 +56,4 @@ jobs:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./correct_script.server/src/main/resources/initial_prompt.txt
           asset_name: initial_prompt.txt
+          asset_content_type: text/plain
