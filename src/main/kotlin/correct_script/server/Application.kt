@@ -18,6 +18,12 @@ fun Application.module() {
     val numThreads = min(numLlmInstances, Runtime.getRuntime().availableProcessors())
     val llamaModelDispatcher = Executors.newFixedThreadPool(numThreads).asCoroutineDispatcher()
 
+    val modelFile = environment.config.property("llama_cpp.model_file").getString()
+
+    if (!modelFile.endsWith(".gguf")) {
+        throw IllegalArgumentException("model_file in .gguf format required")
+    }
+
     val llamaService = LlamaService(
         modelFile=environment.config.property("llama_cpp.model_file").getString(),
         contextLength=environment.config.property("llama_cpp.context_length").getString().toInt(),
