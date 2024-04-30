@@ -28,7 +28,6 @@ fun Application.module() {
         modelFile=environment.config.property("llama_cpp.model_file").getString(),
         contextLength=environment.config.property("llama_cpp.context_length").getString().toInt(),
         maxTokensToGen=environment.config.property("llama_cpp.max_tokens_to_gen").getString().toInt(),
-        customGrammarFile=environment.config.property("llama_cpp.custom_grammar_file").getString(),
         customInitialPromptFile=environment.config.property("llama_cpp.custom_initial_prompt_file").getString(),
         numInstances = numLlmInstances
         )

@@ -57,3 +57,13 @@ jobs:
           asset_path: ./correct_script.server/src/main/resources/initial_prompt.txt
           asset_name: initial_prompt.txt
           asset_content_type: text/plain
+
+      - name: Upload run script to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./correct_script.server/correct_script-server.sh
+          asset_name: correct_script-server.sh
+          asset_content_type: text/plain

@@ -10,5 +10,5 @@ llama_cpp:
     max_tokens_to_gen: 2048
     num_llm_instances: 3
     model_file: ""
-    custom_grammar_file: ""
     custom_initial_prompt_file: ""
+

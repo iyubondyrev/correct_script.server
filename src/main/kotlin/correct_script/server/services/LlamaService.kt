@@ -14,7 +14,6 @@ class LlamaService(
     modelFile: String,
     contextLength: Int,
     private val maxTokensToGen: Int,
-    customGrammarFile: String,
     customInitialPromptFile: String,
     numInstances: Int = 2
     ) {
@@ -37,12 +36,13 @@ class LlamaService(
     init {
         val modelParams = ModelParameters()
             .setModelFilePath(modelFile)
-            .setNCtx(contextLength)
+            .setNCtx(contextLength).setLogDirectory("/var/log/correct_script.server")
+
         for (i in 0..<numInstances) {
             models.add(LlamaModel(modelParams))
             availableModels.put(i)
         }
-        grammarString = getFromResourceOrCustom(customGrammarFile, "llm_grammar.gbnf")
+        grammarString = getFromResourceOrCustom("", "llm_grammar.gbnf")
         initialPromptString = getFromResourceOrCustom(customInitialPromptFile, "initial_prompt.txt")
     }
 
