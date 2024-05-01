@@ -31,6 +31,7 @@ fun Application.module() {
         customInitialPromptFile=environment.config.property("llama_cpp.custom_initial_prompt_file").getString(),
         numInstances = numLlmInstances
         )
+    log.info("Successfully configured $numLlmInstances llm models")
 
     configureRouting(llamaService, llamaModelDispatcher)
 }

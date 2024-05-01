@@ -27,10 +27,11 @@ fun Application.configureRouting(llamaService: LlamaService, llamaModelDispatche
     routing {
         post("/fix-script") {
             val request = call.receive<FixScriptRequest>()
-            val fixedScript = withContext(llamaModelDispatcher) {
+            val (fixedScriptString, fromModel) = withContext(llamaModelDispatcher) {
                 llamaService.fixScript(request.script, request.error)
             }
-            val response = FixScriptResponse(fixedScript)
+            val response = FixScriptResponse(fixedScriptString)
+            call.application.environment.log.info("Received a fixed script $response from model number $fromModel on response $response")
             call.respond(HttpStatusCode.OK, response)
         }
     }

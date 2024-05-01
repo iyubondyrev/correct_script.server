@@ -36,17 +36,18 @@ class LlamaService(
     init {
         val modelParams = ModelParameters()
             .setModelFilePath(modelFile)
-            .setNCtx(contextLength).setLogDirectory("/var/log/correct_script.server")
+            .setNCtx(contextLength)
 
         for (i in 0..<numInstances) {
             models.add(LlamaModel(modelParams))
             availableModels.put(i)
         }
+
         grammarString = getFromResourceOrCustom("", "llm_grammar.gbnf")
         initialPromptString = getFromResourceOrCustom(customInitialPromptFile, "initial_prompt.txt")
     }
 
-    suspend fun fixScript(script: String, error: String): String {
+    suspend fun fixScript(script: String, error: String): Pair<String, Int> {
         val modelIndex = withContext(Dispatchers.IO) {
             availableModels.take()
         }
@@ -57,7 +58,7 @@ class LlamaService(
             var jsonString = model.complete(inferParams)
             jsonString = jsonString.replace("<|endoftext|>", "")
             val jsonObject = gson.fromJson(jsonString, Map::class.java)
-            return jsonObject["fixedScript"] as? String ?: ""
+            return Pair(jsonObject["fixedScript"] as? String ?: "", modelIndex)
         } finally {
             withContext(Dispatchers.IO) {
                 availableModels.put(modelIndex)

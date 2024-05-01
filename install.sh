@@ -3,6 +3,9 @@
 # Define the installation directory
 INSTALL_DIR="/opt/correct_script.server"
 
+# Define the log directory
+LOG_DIR="/var/log/correct_script.server"
+
 # GitHub repository details
 REPO="iyubondyrev/correct_script.server"
 
@@ -52,7 +55,16 @@ mv "$INSTALL_DIR/correct_script-server.sh" "$INSTALL_DIR/correct_script-server"
 echo "Adding server script to PATH..."
 sudo ln -s "$INSTALL_DIR/correct_script-server" /usr/local/bin/correct_script-server
 
-mkdir /var/log/correct_script.server
+# Setup log directory
+echo "Setting up log directory at $LOG_DIR..."
+sudo mkdir -p "$LOG_DIR"
+sudo chown $(whoami) "$LOG_DIR"
+sudo chmod 700 "$LOG_DIR"
+
+# Create log files
+sudo touch "$LOG_DIR/server.log"
+sudo chown $(whoami) "$LOG_DIR/server.log"
 
 echo "Installation completed successfully."
 echo "You can find everything in $INSTALL_DIR."
+echo "Logs will be stored in $LOG_DIR."
