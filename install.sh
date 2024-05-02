@@ -42,7 +42,7 @@ curl -L "$server_script_url" -o "$INSTALL_DIR/correct_script-server.sh"
 
 if [ "$DOWNLOAD_MODEL_GGUF" = "yes" ]; then
     echo "Downloading GGUF model..."
-    curl -L "$MODEL_URL" -o "$INSTALL_DIR/phi_3_mini_q2.gguf"
+    curl -L "$MODEL_URL" -o "phi_3_mini_q2.gguf"
 fi
 
 # Make the server script executable and rename it
