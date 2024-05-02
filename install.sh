@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DOWNLOAD_MODEL_GGUF=${DOWNLOAD_MODEL:-no}
+
 # Define the installation directory
 INSTALL_DIR="/opt/correct_script.server"
 
@@ -37,11 +39,8 @@ curl -L "$config_url" -o "$INSTALL_DIR/config.yaml"
 curl -L "$initial_prompt_url" -o "$INSTALL_DIR/initial_prompt.txt"
 curl -L "$server_script_url" -o "$INSTALL_DIR/correct_script-server.sh"
 
-# Ask user if they want to download the GGUF model
-echo "Do you want to download the GGUF model for the server? (yes/no)"
-read download_model
 
-if [ "$download_model" = "yes" ]; then
+if [ "$DOWNLOAD_MODEL_GGUF" = "yes" ]; then
     echo "Downloading GGUF model..."
     curl -L "$MODEL_URL" -o "$INSTALL_DIR/phi_3_mini_q2.gguf"
 fi
