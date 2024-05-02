@@ -68,5 +68,3 @@ sudo chown $(whoami) "$LOG_DIR/server.log"
 echo "Installation completed successfully."
 echo "You can find everything in $INSTALL_DIR."
 echo "Logs will be stored in $LOG_DIR."
-
-rm -- "$0"
