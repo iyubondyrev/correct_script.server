@@ -6,7 +6,7 @@ show_help() {
     echo "Options:"
     echo "  --config=PATH                    Specify the configuration file, if specified everything else will be ignored."
     echo "  --port=PORT                      Set the server port. Default is 8080."
-    echo "  --context_length=LENGTH          Set the context length. Default is 4096, max is 4096."
+    echo "  --context_length=LENGTH          Set the context length. Default is 4096"
     echo "  --max_tokens_to_gen=MAX          Set the maximum tokens to generate. Default is 2048."
     echo "  --num_llm_instances=NUM          Set the number of LLM instances. Default is 2."
     echo "  --model_file=FILE                Specify the model file (required)."
